@@ -58,14 +58,21 @@ Files
 We are going to use [AWS CDK](https://docs.aws.amazon.com/CDK/latest/userguide/what-is.html) (Cloud Development Kit) to create the proposed application. Why are we using AWS CDK over other options?
 
 1. Clicking around in AWS Console is not an option.
+    * There is no way for you to get your work reviewed.
+    * There is no guarantee that you'll be able to replicate everything in a complex stack.
+    * Clicking cannot be automated, shared and has to be done by humans. Humans are not known for being super efficient.
+    * And most dangerours, if you are clicking at night and feeling sleepy, you are one click away from nuking your infrastructure.
 2. Cloudformation is hard and usually way too long which makes it difficult to review.
 3. We love coding. :)
 
-AWS CDK is a software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation. AWS CDK supports C#/.NET, Java, JavaScript, or TypeScript. For this workshop we'll be using TypeScript because we love code prediction and autocomplete. If you don't you should try it, its so helpful.  
+AWS CDK is a software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation. AWS CDK supports Java, JavaScript, TypeScript and even C#. For this workshop we'll be using TypeScript because we love code prediction and autocomplete.
 
-**Construct** in terms of CDK is a Cloud Resource, it can be a simple resource like an S3 Bucket or Lambda Function or a complex resource like VPC combining several simple constructs. In short, everything in AWS CDK is a construct. Construct object on creation requires three fields **stack**, **name** and **props**.
+[**Construct**](https://docs.aws.amazon.com/CDK/latest/userguide/constructs.html) in terms of CDK is a Cloud Resource, it can be a simple resource like an S3 Bucket or Lambda Function or a complex resource like VPC combining several simple constructs. In short, everything in AWS CDK is a construct. Construct object on creation requires three fields **stack**, **name** and **props**.
 
-Constructs are weird in one way. If you want to create an AWS Resource, simply create object of the corresponding construct. There is no extra call needed to `.build()` the construct. Due to this reason most of the code examples available are using constructors for pretty much writing all the code. We can split out things into method, but we still need to call those methods from constructors. Whole CDK projects feels like Guice Module with all the providers called from constructor.
+Constructs are weird in one way. If you want to create an AWS Resource, simply create object of the corresponding construct. There is no extra call needed to `.build()` the construct. Due to this reason most of the code examples available are using constructors for pretty much writing all the code. We can split out things into method, but we still need to call those methods from constructors. Whole CDK projects feels like Guice Module with all the providers called from constructor  ¯\_(ツ)_/¯.
 
 # Lets Start
-![](https://media.giphy.com/media/3ornjIhZGFWpbcGMAU/giphy.gif)
+![](https://media.giphy.com/media/3ornjIhZGFWpbcGMAU/giphy.gif)  
+Before we start doing anything please run `cdk bootstrap` in your project. This will create an S3 bucket that `cdk deploy` will use to store synthesized templates and the related assets before triggering CloudFormation stack update. For more details [check](https://github.com/awslabs/aws-cdk/blob/master/packages/aws-cdk/README.md#cdk-bootstrap).
+
+We'll create resources in the order in Proposal section.
