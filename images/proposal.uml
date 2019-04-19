@@ -1,0 +1,12 @@
+@startuml
+
+Client -> Cognito: Authentication
+Cognito --> Client: STS Token
+Client -> ApiGateway: With STS Token
+ApiGateway -> Lambda
+Lambda -> DynamoDB: Fetch Random Quote
+DynamoDB --> Lambda
+Lambda --> ApiGateway
+ApiGateway --> Client: Amazing quote returned
+
+@endumla

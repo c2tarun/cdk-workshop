@@ -26,5 +26,25 @@ CDK will use default aws cli profile configured on your host. For this workshop 
     2. Enter `us-west-2` or any [other region](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html) of your choice.
 
 # Project Setup
-1. Checkout this repository by running `git clone https://github.com/c2tarun/cdk-workshop.git`
-2. 
+1. Checkout this repository by running `git clone https://github.com/c2tarun/cdk-workshop.git -b start`
+```
+Files
+.
+├── bin
+│   └── cdk-workshop.ts - This file is entry point of our application. This will load our stack defined in lib/cdk-workshop-stack.ts file. We don't have to modify this file for this workshop.
+├── cdk.json - This tells cdk toolkit on how to run our app.
+├── lib
+│   └── cdk-workshop-stack.ts - This is our main stack. All resources we'll create will be added here, or imported here.
+├── package-lock.json
+├── package.json
+└── tsconfig.json
+```
+2. Run `npm install && npm run watch` this will watch changes in typescript file and generate corresponding Types and JS file on detecting changes.
+3. Open another terminal and navigate to `cdk-workshop` folder. Keep this terminal open we'll run cdk commands from here.
+
+# Proposal
+![Proposal](/images/proposal.svg)
+
+# Lets Start
+![](https://media.giphy.com/media/3ornjIhZGFWpbcGMAU/giphy.gif)
+
