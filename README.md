@@ -69,10 +69,49 @@ AWS CDK is a software development framework for defining cloud infrastructure in
 
 [**Construct**](https://docs.aws.amazon.com/CDK/latest/userguide/constructs.html) in terms of CDK is a Cloud Resource, it can be a simple resource like an S3 Bucket or Lambda Function or a complex resource like VPC combining several simple constructs. In short, everything in AWS CDK is a construct. Construct object on creation requires three fields **stack**, **name** and **props**.
 
-Constructs are weird in one way. If you want to create an AWS Resource, simply create object of the corresponding construct. There is no extra call needed to `.build()` the construct. Due to this reason most of the code examples available are using constructors for pretty much writing all the code. We can split out things into method, but we still need to call those methods from constructors. Whole CDK projects feels like Guice Module with all the providers called from constructor  ¯\_(ツ)_/¯.
+Constructs are weird in one way. If you want to create an AWS Resource, simply create object of the corresponding construct. There is no extra call needed to `.build()` the construct. Due to this reason most of the code examples available are using constructors for pretty much writing all the code. We can split out things into method, but we still need to call those methods from constructors. Whole CDK projects feels like Guice Module with all the providers called from constructor  ¯\\__(ツ)__/¯.
+
+For this workshop we'll create everything under CdkWorkshopStack constructor in `cdk-workshop-stack.ts` file.
 
 # Lets Start
 ![](https://media.giphy.com/media/3ornjIhZGFWpbcGMAU/giphy.gif)  
 Before we start doing anything please run `cdk bootstrap` in your project. This will create an S3 bucket that `cdk deploy` will use to store synthesized templates and the related assets before triggering CloudFormation stack update. For more details [check](https://github.com/awslabs/aws-cdk/blob/master/packages/aws-cdk/README.md#cdk-bootstrap).
 
-We'll create resources in the order in Proposal section.
+We'll create resources in the order in Proposal section. So lets start with:
+### DynamoDB Table
+To create a DynamoDB Table we need to do three things:
+1. Take dependency on [AWS DynamoDB Construct Library](https://awslabs.github.io/aws-cdk/refs/_aws-cdk_aws-dynamodb.html). To do that add `"@aws-cdk/aws-dynamodb": "^0.28.0"` in dependecies of your package.json. Run `npm install` so that dependency is downloaded to your node_modules. *At the time of writing of this workshop I need version 0.28.0 for enabling CORS in API Gateway. More details when we create API Gateway :)*
+2. Import dynamodb in your `cdk-workshop-stack.ts` file. Add `import dynamodb = require('@aws-cdk/aws-dynamodb');` among other imports in the file.
+3. Create the construct, in constructor add following code:
+```typescript
+    const quotesTable = new dynamodb.Table(this, 'Quotes', {
+      partitionKey: {
+        name: 'id',
+        type: dynamodb.AttributeType.String
+      }
+    });
+```
+That's it. We can configure other attributes of the table, but for now we'll use the default values. Run `cdk diff` and validate if you are seeing following output.
+```js
+Stack CdkWorkshopStack
+Resources
+[+] AWS::DynamoDB::Table Quotes Quotes4DCFF1CF
+```
+Run `cdk deploy` to create the table.
+```
+CdkWorkshopStack: deploying...
+CdkWorkshopStack: creating CloudFormation changeset...
+ 0/3 | 15:50:23 | CREATE_IN_PROGRESS   | AWS::CDK::Metadata   | CDKMetadata
+ 0/3 | 15:50:23 | CREATE_IN_PROGRESS   | AWS::DynamoDB::Table | Quotes (Quotes4DCFF1CF)
+ 0/3 | 15:50:24 | CREATE_IN_PROGRESS   | AWS::DynamoDB::Table | Quotes (Quotes4DCFF1CF) Resource creation Initiated
+ 0/3 | 15:50:25 | CREATE_IN_PROGRESS   | AWS::CDK::Metadata   | CDKMetadata Resource creation Initiated
+ 1/3 | 15:50:25 | CREATE_COMPLETE      | AWS::CDK::Metadata   | CDKMetadata
+ 2/3 | 15:50:54 | CREATE_COMPLETE      | AWS::DynamoDB::Table | Quotes (Quotes4DCFF1CF)
+ 3/3 | 15:50:56 | CREATE_COMPLETE      | AWS::CloudFormation::Stack | CdkWorkshopStack
+
+ ✅  CdkWorkshopStack
+
+Stack ARN:
+arn:aws:cloudformation:us-west-2:222222222222:stack/CdkWorkshopStack/7dad4dd0-62f5-11e9-9318-066b98e74c72
+```
+![](https://media.giphy.com/media/yoJC2GnSClbPOkV0eA/giphy.gif)
