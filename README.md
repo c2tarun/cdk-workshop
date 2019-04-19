@@ -44,7 +44,28 @@ Files
 
 # Proposal
 ![Proposal](/images/proposal.svg)
+## Resources
+**DynamoDB** `Quotes` table will saved quotes and who said it.  
+**Lambda** `RandomQuotesLambda` will handle GET and POST requests. On GET it'll return a random quotes from DynamoDB, on POST it'll get one quote from BODY and put it in DynamoDB.  
+**API Gateway** To access our Lambda.  
+**Cognito** `User Pool` for Authentication. `Identity Pool` to grant permission to invoke our API Gateway.  
+
+## Bonus
+**Website** A website to authenticate with Cognito and fetch random quotes.
+
+# Context
+![](https://media.giphy.com/media/7getOyWn0qT9C/giphy.gif)  
+We are going to use [AWS CDK](https://docs.aws.amazon.com/CDK/latest/userguide/what-is.html) (Cloud Development Kit) to create the proposed application. Why are we using AWS CDK over other options?
+
+1. Clicking around in AWS Console is not an option.
+2. Cloudformation is hard and usually way too long which makes it difficult to review.
+3. We love coding. :)
+
+AWS CDK is a software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation. AWS CDK supports C#/.NET, Java, JavaScript, or TypeScript. For this workshop we'll be using TypeScript because we love code prediction and autocomplete. If you don't you should try it, its so helpful.  
+
+**Construct** in terms of CDK is a Cloud Resource, it can be a simple resource like an S3 Bucket or Lambda Function or a complex resource like VPC combining several simple constructs. In short, everything in AWS CDK is a construct. Construct object on creation requires three fields **stack**, **name** and **props**.
+
+Constructs are weird in one way. If you want to create an AWS Resource, simply create object of the corresponding construct. There is no extra call needed to `.build()` the construct. Due to this reason most of the code examples available are using constructors for pretty much writing all the code. We can split out things into method, but we still need to call those methods from constructors. Whole CDK projects feels like Guice Module with all the providers called from constructor.
 
 # Lets Start
 ![](https://media.giphy.com/media/3ornjIhZGFWpbcGMAU/giphy.gif)
-
