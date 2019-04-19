@@ -27,3 +27,4 @@ CDK will use default aws cli profile configured on your host. For this workshop 
 
 # Project Setup
 1. Checkout this repository by running `git clone https://github.com/c2tarun/cdk-workshop.git`
+2. 
