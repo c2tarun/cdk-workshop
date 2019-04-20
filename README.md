@@ -63,7 +63,10 @@ We are going to use [AWS CDK](https://docs.aws.amazon.com/CDK/latest/userguide/w
     * Clicking cannot be automated, shared and has to be done by humans. Humans are not known for being super efficient.
     * And most dangerours, if you are clicking at night and feeling sleepy, you are one click away from nuking your infrastructure.
 2. Cloudformation is hard and usually way too long which makes it difficult to review.
-3. We love coding. :)
+3. We love coding. :)  
+*But I hate coding and I am great at League of Legends. I can time and click all night.*  
+Imaging you are building world's most secure AWS VPC. You researched on every small setting and have been working on it for hours. You hit save and BOOM!!
+![](/images/timeout.png)
 
 AWS CDK is a software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation. AWS CDK supports Java, JavaScript, TypeScript and even C#. For this workshop we'll be using TypeScript because we love code prediction and autocomplete.
 
@@ -91,6 +94,8 @@ To create a DynamoDB Table we need to do three things:
       }
     });
 ```
+In this construct we are passing `this` which is current stack. This tells Table on which stack to attach to. Apart from it, its just name and properties.
+
 That's it. We can configure other attributes of the table, but for now we'll use the default values. Run `cdk diff` and validate if you are seeing following output.
 ```js
 Stack CdkWorkshopStack
@@ -115,3 +120,72 @@ Stack ARN:
 arn:aws:cloudformation:us-west-2:222222222222:stack/CdkWorkshopStack/7dad4dd0-62f5-11e9-9318-066b98e74c72
 ```
 ![](https://media.giphy.com/media/yoJC2GnSClbPOkV0eA/giphy.gif)
+
+### Lambda Function
+Steps:
+1. Take dependency on [AWS Lambda Construct Library](https://awslabs.github.io/aws-cdk/refs/_aws-cdk_aws-lambda.html). To do that add `"@aws-cdk/aws-lambda": "^0.28.0"` package.json.
+2. Import lambda in your `cdk-workshop-stack.ts` file. Add `import lambda = require('@aws-cdk/aws-lambda');` below your dynamo import.
+3. Create the construct:
+```typescript
+    const randomQuoteLambda = new lambda.Function(this, 'RandomQuoteLambda', {
+      runtime: lambda.Runtime.NodeJS810,
+      handler: 'random_quote.handler',
+      code: lambda.Code.asset('lambda')
+    });
+```
+Construct creation is similar to Dynamo Table but properties have `code` attribute which looks interesting. If we create lambda manually, we can provide the code in three ways:
+1. Inline code editor.
+2. Uploading zip file.
+3. Uploading a zip file to s3 and providing a link.
+`lambda.Code` gives us access to these ways of providing code to our lambda. 
+1. lambda.Code.inline('code goes here') is the way for providing code inline.
+2. lambda.Code.asset('path/to/lambda') will look for the folder provided, zip it and link it to lambda by uploding it to CDK S3 bucket which we created by running `cdk bootstrap`.
+3. lambda.Code.bucket() will allow us to provide an S3 Bucket and a key.
+For more details on this [click here](https://awslabs.github.io/aws-cdk/refs/_aws-cdk_aws-lambda.html#handler-code).
+
+TODO: Convert above to github tables.
+
+Thats it!! Well we did forget about permissions though :( In AWS nothing have permission to anything by default. That means our Lambda don't have permission to call DynamoDB.  
+Now in world of clicks we would:
+- Go to Lambda Function and find the Role.
+- Go to IAM and again find the Role.
+- Find the policy attac..... You know what I mean.  
+
+In CDK world just ask table nicely to let Lambda access it :)
+```typescript
+    quotesTable.grantReadWriteData(randomQuoteLambda.role);
+```
+`cdk diff`
+```
+Parameters
+[+] Parameter RandomQuoteLambda/Code/S3Bucket RandomQuoteLambdaCodeS3BucketB5CE811D: {"Type":"String","Description":"S3 bucket for asset \"CdkWorkshopStack/RandomQuoteLambda/Code\""}
+[+] Parameter RandomQuoteLambda/Code/S3VersionKey RandomQuoteLambdaCodeS3VersionKeyCC5363EA: {"Type":"String","Description":"S3 key for asset version \"CdkWorkshopStack/RandomQuoteLambda/Code\""}
+
+Resources
+[+] AWS::IAM::Role RandomQuoteLambda/ServiceRole RandomQuoteLambdaServiceRole4EEFCC0F
+[+] AWS::IAM::Policy RandomQuoteLambda/ServiceRole/DefaultPolicy RandomQuoteLambdaServiceRoleDefaultPolicy735752DC
+[+] AWS::Lambda::Function RandomQuoteLambda RandomQuoteLambda4EB192D7
+```
+`cdk deploy`
+```
+CdkWorkshopStack: creating CloudFormation changeset...
+ 0/5 | 17:20:31 | UPDATE_IN_PROGRESS   | AWS::CloudFormation::Stack | CdkWorkshopStack User Initiated
+
+ 0/5 | 17:20:59 | CREATE_IN_PROGRESS   | AWS::IAM::Role        | RandomQuoteLambda/ServiceRole (RandomQuoteLambdaServiceRole4EEFCC0F)
+ 0/5 | 17:21:00 | UPDATE_IN_PROGRESS   | AWS::CDK::Metadata    | CDKMetadata
+ 0/5 | 17:21:00 | CREATE_IN_PROGRESS   | AWS::IAM::Role        | RandomQuoteLambda/ServiceRole (RandomQuoteLambdaServiceRole4EEFCC0F) Resource creation Initiated
+ 1/5 | 17:21:02 | UPDATE_COMPLETE      | AWS::CDK::Metadata    | CDKMetadata
+ 2/5 | 17:21:18 | CREATE_COMPLETE      | AWS::IAM::Role        | RandomQuoteLambda/ServiceRole (RandomQuoteLambdaServiceRole4EEFCC0F)
+ 2/5 | 17:21:21 | CREATE_IN_PROGRESS   | AWS::IAM::Policy      | RandomQuoteLambda/ServiceRole/DefaultPolicy (RandomQuoteLambdaServiceRoleDefaultPolicy735752DC)
+ 2/5 | 17:21:21 | CREATE_IN_PROGRESS   | AWS::IAM::Policy      | RandomQuoteLambda/ServiceRole/DefaultPolicy (RandomQuoteLambdaServiceRoleDefaultPolicy735752DC) Resource creation Initiated
+ 3/5 | 17:21:30 | CREATE_COMPLETE      | AWS::IAM::Policy      | RandomQuoteLambda/ServiceRole/DefaultPolicy (RandomQuoteLambdaServiceRoleDefaultPolicy735752DC)
+ 3/5 | 17:21:33 | CREATE_IN_PROGRESS   | AWS::Lambda::Function | RandomQuoteLambda (RandomQuoteLambda4EB192D7)
+ 3/5 | 17:21:34 | CREATE_IN_PROGRESS   | AWS::Lambda::Function | RandomQuoteLambda (RandomQuoteLambda4EB192D7) Resource creation Initiated
+ 4/5 | 17:21:34 | CREATE_COMPLETE      | AWS::Lambda::Function | RandomQuoteLambda (RandomQuoteLambda4EB192D7)
+
+ ✅  CdkWorkshopStack
+
+Stack ARN:
+arn:aws:cloudformation:us-west-2:222222222222:stack/CdkWorkshopStack/7dad4dd0-62f5-11e9-9318-066b98e74c72
+```
+![](https://media.giphy.com/media/vEgtLzJo8n7qg/giphy.gif)
