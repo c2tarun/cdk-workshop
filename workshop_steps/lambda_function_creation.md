@@ -81,5 +81,5 @@ For POST:
 }
 ```
 
-## [<<PREVIOUS](workshop_steps/dynamodb_creation.md)
-## [NEXT>>](workshop_steps/api_gateway_creation.md)
+## [<<PREVIOUS](dynamodb_creation.md)
+## [NEXT>>](api_gateway_creation.md)
