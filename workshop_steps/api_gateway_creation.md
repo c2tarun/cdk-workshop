@@ -110,5 +110,10 @@ This command should give you access to your admin access key and secret key. Now
 4. Enter your access_key, secret_key and region. You can leave other fields blank.
 5. Send
 
-Nice!!
+Nice!! Lets do a quick comparison with CFN template which we had to write for the whole thing:
+
+`cdk synth | wc -l` vs `cat lib/cdk-workshop-stack.ts | wc -l`  
+347 vs  35
+
+![](https://media.giphy.com/media/5VKbvrjxpVJCM/giphy.gif)
 
