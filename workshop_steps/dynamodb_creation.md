@@ -13,7 +13,7 @@ To create a DynamoDB Table we need to do three things:
       }
     });
 ```
-Construct `dynamo.Table` receives `this` the stack in this it'll be created.  
+Construct `dynamo.Table` receives `this`, the stack in this it'll be created.  
 `'Quotes'` construct id, this is used by cdk to determine to find construct in the stack. If another construct exists with the same name it'll be updated.  
 `{}` props. For every construct there is a Props interface which mentions what is required and optional as properties. For DynamoDB Table it is [TableProps](https://awslabs.github.io/aws-cdk/refs/_aws-cdk_aws-dynamodb.html#@aws-cdk/aws-dynamodb.TableProps)
 
