@@ -10,7 +10,7 @@ Steps:
       code: lambda.Code.asset('lambda')
     });
 ```
-Construct creation is similar to DynamoDB Table but properties have `code` attribute which looks interesting. If we create lambda manually, we can provide  code in three ways:
+Construct creation is similar to DynamoDB Table but properties have `code` attribute which looks interesting. This attributed corresponds to the three ways in which we can provide code to a lambda function:
 
 | Manual | CDK | Description |
 | --- | --- | --- |
