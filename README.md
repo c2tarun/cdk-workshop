@@ -79,7 +79,7 @@ Constructs are weird in one way. If you want to create an AWS Resource, simply c
 
 For this workshop we'll create everything under CdkWorkshopStack constructor in `cdk-workshop-stack.ts` file.
 
-# Lets Start
+# Let's Start
 ![](https://media.giphy.com/media/3ornjIhZGFWpbcGMAU/giphy.gif)  
 Before we start though please run `cdk bootstrap` in your project. This will create an S3 bucket that `cdk deploy` will use to store synthesized templates and the related assets before triggering CloudFormation stack update. For more details [check](https://github.com/awslabs/aws-cdk/blob/master/packages/aws-cdk/README.md#cdk-bootstrap).
 
