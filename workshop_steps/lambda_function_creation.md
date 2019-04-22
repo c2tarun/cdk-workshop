@@ -17,6 +17,7 @@ Construct creation is similar to DynamoDB Table but properties have `code` attri
 | Inline code editor. | `lambda.Code.inline('code')` | To upload lambda code inline. |
 | Uploading zip file | `lambda.Code.asset('lambda/folder')` | A zip is created with lambda code and uploaded. |
 | Uploading to an S3 Bucket and link | `lambda.Code.bucket('bucketName', 'key')` | Uploads zip to an S3 Bucket and links it to Lambda function |
+
 For more details on this [click here](https://awslabs.github.io/aws-cdk/refs/_aws-cdk_aws-lambda.html#handler-code).
 
 Thats it!! Well we did forget about permissions though :( In AWS nothing have permission to anything by default. That means our Lambda don't have permission to call DynamoDB.  
