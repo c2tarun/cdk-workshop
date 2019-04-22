@@ -14,6 +14,7 @@ Lets break down this code a bit. Most interesting part so far in this code is [`
 3. Add handler to Methods etc.
 
 `LambdaRestApi` requires an handler to be provided and it creates `Proxy` resource with `Any` method by default. We can still add custom resources and method.
+
 `cdk diff`
 ```
 [+] AWS::Lambda::Permission RandomQuoteLambda/ApiPermission.ANY.. RandomQuoteLambdaApiPermissionANY250CD9A2
