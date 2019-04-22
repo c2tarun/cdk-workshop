@@ -1,6 +1,6 @@
 ## DynamoDB Table
 To create a DynamoDB Table we need to do three things:
-1. Take dependency on [AWS DynamoDB Construct Library](https://awslabs.github.io/aws-cdk/refs/_aws-cdk_aws-dynamodb.html). To do that add `"@aws-cdk/aws-dynamodb": "^0.28.0"` in dependecies of your package.json. Run `npm install` so that dependency is downloaded to your node_modules. *At the time of writing of this workshop I need version 0.28.0 for enabling CORS in API Gateway. More details when we create API Gateway :)*
+1. Take dependency on [AWS DynamoDB Construct Library](https://awslabs.github.io/aws-cdk/refs/_aws-cdk_aws-dynamodb.html). To do that add `"@aws-cdk/aws-dynamodb": "^0.28.0"` in dependecies of your package.json. Run `npm install` so that dependency is downloaded to your node_modules.
 2. Import dynamodb in your `cdk-workshop-stack.ts` file. Add `import dynamodb = require('@aws-cdk/aws-dynamodb');` among other imports in the file.
 3. Create the construct, in constructor add following code:
 ```typescript
