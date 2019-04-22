@@ -62,12 +62,15 @@ We are going to use [AWS CDK](https://docs.aws.amazon.com/CDK/latest/userguide/w
     * There is no guarantee that you'll be able to replicate everything in a complex stack.
     * Clicking cannot be automated, shared and has to be done by humans. Humans are not known for being super efficient.
     * And most dangerours, if you are clicking at night and feeling sleepy, you are one click away from nuking your infrastructure.
-2. Cloudformation is hard and usually way too long which makes it difficult to review.
+2. Cloudformation:
+    * is hard and usually way too long which makes it difficult to review.
+    * You cannot test it without running which is frustrating.
 3. We love coding. :)  
-*But I hate coding and I am great at League of Legends. I can time and click all night.*  
+*But I hate coding and I love clicking.*  
 Imaging you are building world's most secure AWS VPC. You researched on every small setting and have been working on it for hours. You hit save and BOOM!!
 ![](/images/timeout.png)
 
+## CDK
 AWS CDK is a software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation. AWS CDK supports Java, JavaScript, TypeScript and even C#. For this workshop we'll be using TypeScript because we love code prediction and autocomplete.
 
 [**Construct**](https://docs.aws.amazon.com/CDK/latest/userguide/constructs.html) in terms of CDK is a Cloud Resource, it can be a simple resource like an S3 Bucket or Lambda Function or a complex resource like VPC combining several simple constructs. In short, everything in AWS CDK is a construct. Construct object on creation requires three fields **stack**, **name** and **props**.
