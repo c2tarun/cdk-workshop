@@ -5,7 +5,7 @@ This section is very rushed and can be considered as Work in Progress, but it'll
 ```
 For this section we'll use a very basic web app written in Vue which will use Cognito for authentication. Once authenticated it'll access API Gateway to fetch random quotes.
 
-But first we have to enable CORS. Add this method outside of your constructor in your `stack.ts` file.
+But first we have to enable CORS. Add this method outside of your constructor as a method in `CdkWorkshopStack` class in `cdk-workshop-stack.ts` file.
 Explanation: Pending
 ```typescript
   /**
