@@ -1,7 +1,7 @@
 ## Lambda Function
 Steps:
 1. Take dependency on [AWS Lambda Construct Library](https://awslabs.github.io/aws-cdk/refs/_aws-cdk_aws-lambda.html). To do that add `"@aws-cdk/aws-lambda": "^0.28.0"` package.json. Your dependencies will look like:
-```js
+```json
 "dependencies": {
     "@aws-cdk/cdk": "^0.28.0",
     "@aws-cdk/aws-dynamodb": "^0.28.0",

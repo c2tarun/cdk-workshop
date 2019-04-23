@@ -2,7 +2,17 @@
 You know the dance:
 1. `"@aws-cdk/aws-apigateway": "^0.28.0"` in package.json followed by `npm install`.
 2. `import api = require('@aws-cdk/aws-apigateway');` into your stack.
-3. Construct api gateway by:
+3. Your dependencies will look like:
+```json
+"dependencies": {
+    "@aws-cdk/cdk": "^0.28.0",
+    "@aws-cdk/aws-dynamodb": "^0.28.0",
+    "@aws-cdk/aws-lambda": "^0.28.0",
+    "@aws-cdk/aws-apigateway": "^0.28.0",
+    "source-map-support": "^0.5.9"
+  }
+```
+4. Construct api gateway by:
 ```typescript
 new api.LambdaRestApi(this, 'LambdaQuoteApi', {
     handler: randomQuoteLambda

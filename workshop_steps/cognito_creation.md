@@ -19,7 +19,19 @@ Let's start this section of the workshop:
 
 1. `"@aws-cdk/aws-cognito": "^0.28.0"` to package.json.
 2. `"@aws-cdk/aws-iam": "^0.28.0"` to package.json and `npm install`.
-3. Import following in `cdk-workshop-stack.ts` file:
+3. Your dependencies will look like:
+```json
+"dependencies": {
+    "@aws-cdk/cdk": "^0.28.0",
+    "@aws-cdk/aws-dynamodb": "^0.28.0",
+    "@aws-cdk/aws-lambda": "^0.28.0",
+    "@aws-cdk/aws-apigateway": "^0.28.0",
+    "@aws-cdk/aws-cognito": "^0.28.0",
+    "@aws-cdk/aws-iam": "^0.28.0",
+    "source-map-support": "^0.5.9"
+  }
+```
+4. Import following in `cdk-workshop-stack.ts` file:
 ```typescript
 import cognito = require('@aws-cdk/aws-cognito');
 import iam = require('@aws-cdk/aws-iam');

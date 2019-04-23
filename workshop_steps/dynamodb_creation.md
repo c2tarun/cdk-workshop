@@ -1,7 +1,7 @@
 ## DynamoDB Table
 To create a DynamoDB Table we need to do three things:
 1. Take dependency on [AWS DynamoDB Construct Library](https://awslabs.github.io/aws-cdk/refs/_aws-cdk_aws-dynamodb.html). To do that add `"@aws-cdk/aws-dynamodb": "^0.28.0"` in dependecies of your package.json. Your dependencies will look like this:
-```js
+```json
 "dependencies": {
     "@aws-cdk/cdk": "^0.28.0",
     "@aws-cdk/aws-dynamodb": "^0.28.0",
