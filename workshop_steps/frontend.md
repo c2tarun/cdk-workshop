@@ -71,4 +71,5 @@ Please notice few changes, we are disabling Proxy here because in order to enabl
 2. Open `src/main.js` file and fill details about Cognito User Pool and Identity Pool.
 3. To find these details go to your AWS Console inside Cognito Identity Pool. Find and open your identity pool.
 4. Click on `Edit Identity Pool` at top right hand corner. On edit page, you'll be able to find all the details about Cognito.
-5. Also update region and your API Gateway endpoint
+5. Also update region and your API Gateway endpoint.
+6. cd into checked out project and run `npm install && npm run serve`
