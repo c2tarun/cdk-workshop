@@ -1,7 +1,7 @@
 ## Random Quote Website.
 
 ```
-This section is very rushed and can be considered as Work in Progress....
+This section is very rushed and can be considered as Work in Progress, but it'll get the job done.....
 ```
 For this section we'll use a very basic web app written in Vue which will use Cognito for authentication. Once authenticated it'll access API Gateway to fetch random quotes.
 

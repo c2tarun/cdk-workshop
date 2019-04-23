@@ -18,12 +18,12 @@ new api.LambdaRestApi(this, 'LambdaQuoteApi', {
     handler: randomQuoteLambda
 });
 ```
-Lets break down this code a bit. Most interesting part so far in this code is [`LambdaRestApi`](https://awslabs.github.io/aws-cdk/refs/_aws-cdk_aws-apigateway.html#lambdarestapi) which obviously an extension of [`RestApi`](https://awslabs.github.io/aws-cdk/refs/_aws-cdk_aws-apigateway.html#restapi). Standard process of creating an api is to:  
+Lets break down this code a bit. Most interesting part so far in this code is [`LambdaRestApi`](https://awslabs.github.io/aws-cdk/refs/_aws-cdk_aws-apigateway.html#lambdarestapi) which an extension of [`RestApi`](https://awslabs.github.io/aws-cdk/refs/_aws-cdk_aws-apigateway.html#restapi). Standard process of creating an api is to:  
 1. Create an object of `RestApi`
 2. Add resources and Method to it.
 3. Add handler to Methods etc.
 
-`LambdaRestApi` requires an handler to be provided and it creates `Proxy` resource with `Any` method by default. We can still add custom resources and method.
+`LambdaRestApi` requires an handler to be provided and it creates [`Proxy`](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-http.html) resource with `Any` method by default. We can still add custom resources and method.
 
 `cdk diff`
 ```
