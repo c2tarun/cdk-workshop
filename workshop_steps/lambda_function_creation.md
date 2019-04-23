@@ -1,8 +1,17 @@
 ## Lambda Function
 Steps:
-1. Take dependency on [AWS Lambda Construct Library](https://awslabs.github.io/aws-cdk/refs/_aws-cdk_aws-lambda.html). To do that add `"@aws-cdk/aws-lambda": "^0.28.0"` package.json.
-2. Import lambda in your `cdk-workshop-stack.ts` file. Add `import lambda = require('@aws-cdk/aws-lambda');` below your dynamo import.
-3. Create the construct:
+1. Take dependency on [AWS Lambda Construct Library](https://awslabs.github.io/aws-cdk/refs/_aws-cdk_aws-lambda.html). To do that add `"@aws-cdk/aws-lambda": "^0.28.0"` package.json. Your dependencies will look like:
+```js
+"dependencies": {
+    "@aws-cdk/cdk": "^0.28.0",
+    "@aws-cdk/aws-dynamodb": "^0.28.0",
+    "@aws-cdk/aws-lambda": "^0.28.0",
+    "source-map-support": "^0.5.9"
+  }
+```
+2. Run `npm install`.
+3. Import lambda in your `cdk-workshop-stack.ts` file. Add `import lambda = require('@aws-cdk/aws-lambda');` below your dynamo import.
+4. Create the construct:
 ```typescript
     const randomQuoteLambda = new lambda.Function(this, 'RandomQuoteLambda', {
       runtime: lambda.Runtime.NodeJS810,
