@@ -69,7 +69,13 @@ Please notice few changes, we are disabling Proxy here because in order to enabl
 
 1. `git clone https://github.com/c2tarun/random_quote_website.git`
 2. Open `src/main.js` file and fill details about Cognito User Pool and Identity Pool.
-   Sample Values:
+3. To find these details go to your AWS Console inside Cognito Identity Pool.
+4. Click on `Edit Identity Pool` at top right hand corner. On edit page, you'll be able to find all the details about Cognito.
+5. Once you collect identity pool information scroll down and expand `Authentication Providers` to get user pool information.
+5. Also update region and your API Gateway endpoint. You can quickly obtain your api gateway endpoint by running `cdk deploy`.
+6. cd into cloned project and run `npm install && npm run serve`
+
+Sample Values:
    ```
       identityPoolId: us-west-2:36ff72b3-e36c-2222-88ed-e5d522e477fc
       identityPoolName: RandomQuoteIdentityPool_UTIXKlCbchMB
@@ -79,7 +85,3 @@ Please notice few changes, we are disabling Proxy here because in order to enabl
       
       Note that there is no '/' after prod
    ```
-3. To find these details go to your AWS Console inside Cognito Identity Pool. Find and open your identity pool. Once you collect identity pool information scroll down and expand `Authentication Providers` to get user pool information.
-4. Click on `Edit Identity Pool` at top right hand corner. On edit page, you'll be able to find all the details about Cognito.
-5. Also update region and your API Gateway endpoint.
-6. cd into checked out project and run `npm install && npm run serve`
