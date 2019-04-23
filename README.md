@@ -16,9 +16,8 @@ CDK will use default aws cli profile configured on your host. For this workshop 
 1. Create IAM user with Admin Permissions using AWS Console (this is dangerous and admin credentials should be managed carefully, PLEASE NEVER DO THIS IN PRODUCTION).
     1. Navigate to IAM Management Console in your AWS account and click `Add Users`.
     2. Add a username `cdk-workshop-admin` and check *Programmatic Access*.
-    3. On Next Permissions page select `Create Group` and name the group as `admin`.
+    3. On Next page `Attach existing Policies directly`.
     4. Select `Administrator Access` from list of policies.
-    5. Add user to this Group.
     6. Next > Next > Create User.
     7. Make sure to save Access Key ID and Secret access key before navigating away from Create User confirmation page.
 2. Run `aws configure` on your terminal:
