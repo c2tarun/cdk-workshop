@@ -4,7 +4,6 @@ import lambda = require('@aws-cdk/aws-lambda');
 import api = require('@aws-cdk/aws-apigateway');
 import cognito = require('@aws-cdk/aws-cognito');
 import iam = require('@aws-cdk/aws-iam');
-import { LambdaIntegration } from '@aws-cdk/aws-apigateway';
 
 export class CdkWorkshopStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -32,7 +31,7 @@ export class CdkWorkshopStack extends cdk.Stack {
     });
 
     const resource = randomQuoteApi.root.addResource('quote');
-    resource.addMethod('GET', new LambdaIntegration(randomQuoteLambda), {
+    resource.addMethod('GET', new api.LambdaIntegration(randomQuoteLambda), {
       authorizationType: api.AuthorizationType.IAM
     });
 

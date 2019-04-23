@@ -58,14 +58,14 @@ Replace LambdaRestApi creation call with:
     });
 
     const resource = randomQuoteApi.root.addResource('quote');
-    resource.addMethod('GET', new LambdaIntegration(randomQuoteLambda), {
+    resource.addMethod('GET', new api.LambdaIntegration(randomQuoteLambda), {
       authorizationType: api.AuthorizationType.IAM
     });
 
     this.addCorsOptions(randomQuoteApi.root);
     this.addCorsOptions(resource);
 ```
-Please notice few changes, we are disabling Proxy here because in order to enable CORS we have to add OPTIONS method with AuthType as NONE. Having it Proxy will prevent us from adding method in it.
+Please notice few changes, we are disabling Proxy here because in order to enable CORS we have to add OPTIONS method with AuthType as NONE. CDK didn't allow me to add method to Proxy hence I disabled proxy and created a resource. 
 
 1. `git clone https://github.com/c2tarun/random_quote_website.git`
 2. Open `src/main.js` file and fill details about Cognito User Pool and Identity Pool.
