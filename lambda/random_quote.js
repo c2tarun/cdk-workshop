@@ -51,6 +51,10 @@ exports.handler = async function (event) {
 
         return {
             statusCode: 200,
+            headers: {
+                "Content-Type": "text/json",
+                "Access-Control-Allow-Origin": "*"
+            },
             body: JSON.stringify(randomQuote)
         };
     } else if (event.httpMethod === 'POST') {
@@ -84,6 +88,14 @@ exports.handler = async function (event) {
         return {
             statusCode: 200,
             body: writeResponse
+        };
+    } else if (event.httpMethod === 'OPTIONS') {
+        return {
+            statusCode: 200,
+            headers: {
+                "Content-Type": "text/json",
+                "Access-Control-Allow-Origin": "*"
+            }
         };
     }
 };

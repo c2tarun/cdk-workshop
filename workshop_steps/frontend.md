@@ -1,0 +1,73 @@
+## Random Quote Website.
+
+```
+This section is very rushed and can be considered as Work in Progress....
+```
+For this section we'll use a very basic web app written in Vue which will use Cognito for authentication. Once authenticated it'll access API Gateway to fetch random quotes.
+
+But first we have to enable CORS. Add this method outside of your constructor in your `stack.ts` file.
+```typescript
+  /**
+   * Custom method which will modify the API Gateway resource and enable CORS in it.
+   * Source: https://github.com/awslabs/aws-cdk/issues/906#issuecomment-480554481
+   * @param apiResource
+   */
+  addCorsOptions(apiResource: api.IRestApiResource) {
+    apiResource.addMethod(
+      "OPTIONS",
+      new api.MockIntegration({
+        integrationResponses: [
+          {
+            statusCode: "200",
+            responseParameters: {
+              "method.response.header.Access-Control-Allow-Headers":
+                "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+              "method.response.header.Access-Control-Allow-Origin": "'*'",
+              "method.response.header.Access-Control-Allow-Credentials": "'false'",
+              "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE'"
+            }
+          }
+        ],
+        passthroughBehavior: api.PassthroughBehavior.Never,
+        requestTemplates: {
+          "application/json": '{"statusCode": 200}'
+        }
+      }),
+      {
+        methodResponses: [
+          {
+            statusCode: "200",
+            responseParameters: {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true,
+              "method.response.header.Access-Control-Allow-Origin": true
+            }
+          }
+        ]
+      }
+    );
+  }
+```
+Replace LambdaRestApi creation call with:
+```typescript
+    const randomQuoteApi = new api.LambdaRestApi(this, 'LambdaQuoteApi', {
+      handler: randomQuoteLambda,
+      proxy: false
+    });
+
+    randomQuoteApi.root.addProxy({
+      defaultIntegration: new LambdaIntegration(randomQuoteLambda),
+      defaultMethodOptions: {
+        authorizationType: api.AuthorizationType.IAM
+      }
+    })
+
+    this.addCorsOptions(randomQuoteApi.root);
+```
+
+1. `git clone https://github.com/c2tarun/random_quote_website.git`
+2. Open `src/main.js` file and fill details about Cognito User Pool and Identity Pool.
+3. To find these details go to your AWS Console inside Cognito Identity Pool. Find and open your identity pool.
+4. Click on `Edit Identity Pool` at top right hand corner. On edit page, you'll be able to find all the details about Cognito.
+5. Also update region and your API Gateway endpoint

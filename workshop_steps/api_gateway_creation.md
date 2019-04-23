@@ -118,3 +118,5 @@ Nice!! Lets do a quick comparison with CFN template which we had to write for th
 
 ![](https://media.giphy.com/media/5VKbvrjxpVJCM/giphy.gif)
 
+## [<<PREVIOUS](lambda_function_creation.md)
+## [NEXT>>](cognito_creation.md)
