@@ -31,14 +31,13 @@ export class CdkWorkshopStack extends cdk.Stack {
       proxy: false
     });
 
-    randomQuoteApi.root.addProxy({
-      defaultIntegration: new LambdaIntegration(randomQuoteLambda),
-      defaultMethodOptions: {
-        authorizationType: api.AuthorizationType.IAM
-      }
-    })
+    const resource = randomQuoteApi.root.addResource('quote');
+    resource.addMethod('GET', new LambdaIntegration(randomQuoteLambda), {
+      authorizationType: api.AuthorizationType.IAM
+    });
 
     this.addCorsOptions(randomQuoteApi.root);
+    this.addCorsOptions(resource);
 
     // // Cognito stuff
     // // Creating user pool

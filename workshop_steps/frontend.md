@@ -6,6 +6,7 @@ This section is very rushed and can be considered as Work in Progress....
 For this section we'll use a very basic web app written in Vue which will use Cognito for authentication. Once authenticated it'll access API Gateway to fetch random quotes.
 
 But first we have to enable CORS. Add this method outside of your constructor in your `stack.ts` file.
+Explanation: Pending
 ```typescript
   /**
    * Custom method which will modify the API Gateway resource and enable CORS in it.
@@ -56,15 +57,15 @@ Replace LambdaRestApi creation call with:
       proxy: false
     });
 
-    randomQuoteApi.root.addProxy({
-      defaultIntegration: new LambdaIntegration(randomQuoteLambda),
-      defaultMethodOptions: {
-        authorizationType: api.AuthorizationType.IAM
-      }
-    })
+    const resource = randomQuoteApi.root.addResource('quote');
+    resource.addMethod('GET', new LambdaIntegration(randomQuoteLambda), {
+      authorizationType: api.AuthorizationType.IAM
+    });
 
     this.addCorsOptions(randomQuoteApi.root);
+    this.addCorsOptions(resource);
 ```
+Please notice few changes, we are disabling Proxy here because in order to enable CORS we have to add OPTIONS method with AuthType as NONE. Having it Proxy will prevent us from adding method in it.
 
 1. `git clone https://github.com/c2tarun/random_quote_website.git`
 2. Open `src/main.js` file and fill details about Cognito User Pool and Identity Pool.
