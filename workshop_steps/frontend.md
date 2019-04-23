@@ -75,7 +75,9 @@ Please notice few changes, we are disabling Proxy here because in order to enabl
       identityPoolName: RandomQuoteIdentityPool_UTIXKlCbchMB
       UserPool Id: us-west-2_6xXZqkmmO
       App client id: 48alm118d7hrcttmds4567894v
-      API Gateway endpoint: https://1fpfajsbfb.execute-api.us-west-2.amazonaws.com/prod/
+      API Gateway endpoint: https://1fpfajsbfb.execute-api.us-west-2.amazonaws.com/prod
+      
+      Note that there is no '/' after prod
    ```
 3. To find these details go to your AWS Console inside Cognito Identity Pool. Find and open your identity pool. Once you collect identity pool information scroll down and expand `Authentication Providers` to get user pool information.
 4. Click on `Edit Identity Pool` at top right hand corner. On edit page, you'll be able to find all the details about Cognito.
