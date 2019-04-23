@@ -70,16 +70,20 @@ Imaging you are building world's most secure AWS VPC. You researched on every sm
 ![](/images/timeout.png)
 
 ## CDK
-AWS CDK is a software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation. AWS CDK supports Java, JavaScript, TypeScript and even C#. For this workshop we'll be using TypeScript because we love code prediction and autocomplete.
+AWS CDK is a software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation. AWS CDK supports Java, JavaScript, TypeScript and even C#. For this workshop we'll be using TypeScript because we love code prediction and autocomplete. [Typescript](https://www.typescriptlang.org) is a typed superset of JavaScript that compiles to plain JavaScript.
 
 [**Construct**](https://docs.aws.amazon.com/CDK/latest/userguide/constructs.html) in terms of CDK is a Cloud Resource, it can be a simple resource like an S3 Bucket or Lambda Function or a complex resource like VPC combining several simple constructs. In short, everything in AWS CDK is a construct. Construct object on creation requires three fields **stack**, **name** and **props**.
 
-Constructs are weird in one way. If you want to create an AWS Resource, simply create object of the corresponding construct. There is no extra call needed to `.build()` the construct. Due to this reason most of the code examples available are using constructors for pretty much writing all the code. We can split out things into method, but we still need to call those methods from constructors. Whole CDK projects feels like Guice Module with all the providers called from constructor  ¯\\__(ツ)__/¯.
+Constructs are weird in one way. If you want to create an AWS Resource, simply create object of the corresponding construct. Runtime actually takes care of generating the resource and cloudformation just from object. Due to this reason most of the code examples available are using constructors for pretty much writing all the code. We can split out things into method, but we still need to call those methods from constructors. Whole CDK projects feels like Guice Module with all the providers called from constructor  ¯\\__(ツ)__/¯.
 
 For this workshop we'll create everything under CdkWorkshopStack constructor in `cdk-workshop-stack.ts` file.
 
 # Let's Start
 ![](https://media.giphy.com/media/3ornjIhZGFWpbcGMAU/giphy.gif)  
-Before we start though please run `cdk bootstrap` in your project. This will create an S3 bucket that `cdk deploy` will use to store synthesized templates and the related assets before triggering CloudFormation stack update. For more details [check](https://github.com/awslabs/aws-cdk/blob/master/packages/aws-cdk/README.md#cdk-bootstrap).
+Before we start though please run 
+```
+cdk bootstrap
+```
+in your project. This will create an S3 bucket that `cdk deploy` will use to store synthesized templates and the related assets before triggering CloudFormation stack update. For more details [check](https://github.com/awslabs/aws-cdk/blob/master/packages/aws-cdk/README.md#cdk-bootstrap).
 
 ## [NEXT>>](workshop_steps/dynamodb_creation.md)
