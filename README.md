@@ -1,4 +1,4 @@
-# Introduction (WIP....)
+# Introduction
 AWS CDK is a software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation. The intention of this workshop is to introduce framework to developers as an alternative to writing Cloudformation. AWS CDK supports C#/.NET, Java, JavaScript, or TypeScript. For this workshop we'll be using TypeScript.
 
 # Prerequisites
