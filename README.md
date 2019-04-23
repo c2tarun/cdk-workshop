@@ -86,4 +86,12 @@ cdk bootstrap
 ```
 in your project. This will create an S3 bucket that `cdk deploy` will use to store synthesized templates and the related assets before triggering CloudFormation stack update. For more details [check](https://github.com/awslabs/aws-cdk/blob/master/packages/aws-cdk/README.md#cdk-bootstrap).
 
+## Small Note
+We did put setting up your text editor as Optional however, if you do setup it up, it might take 10 mins (even less if you use vscode) and you'll get:
+
+Code Prediction  
+![](/images/ccom1.png)
+
+Easy access to documentation  
+![](/images/ccom2.png)
 ## [NEXT>>](workshop_steps/dynamodb_creation.md)

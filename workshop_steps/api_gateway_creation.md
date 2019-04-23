@@ -69,7 +69,7 @@ However
 ![](/images/2z3whd.jpg)
 
 Thats fair, lets secure our API by adding following to `LambdaRestApiProps`:
-```js
+```typescript
 options: {
 defaultMethodOptions: {
     authorizationType: api.AuthorizationType.IAM
