@@ -73,7 +73,8 @@ CdkWorkshopStack: creating CloudFormation changeset...
 Stack ARN:
 arn:aws:cloudformation:us-west-2:222222222222:stack/CdkWorkshopStack/6ab94140-6375-11e9-bcaf-028e369bfbbe
 ```
-![](https://media.giphy.com/media/vEgtLzJo8n7qg/giphy.gif)
+![](https://media.giphy.com/media/vEgtLzJo8n7qg/giphy.gif)  
+<sup>https://media.giphy.com/media/vEgtLzJo8n7qg/giphy.gif</sup>
 
 For wise devs who are shaking their head, yes table name is hardcoded in Lambda. We can pass it as environment variable...... maybe later ;)
 

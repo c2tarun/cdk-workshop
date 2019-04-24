@@ -54,6 +54,7 @@ Files
 
 # Context
 ![](https://media.giphy.com/media/7getOyWn0qT9C/giphy.gif)  
+<sup>https://media.giphy.com/media/7getOyWn0qT9C/giphy.gif</sup>  
 We are going to use [AWS CDK](https://docs.aws.amazon.com/CDK/latest/userguide/what-is.html) (Cloud Development Kit) to create the proposed application. Why are we using AWS CDK over other options?
 
 1. Clicking around in AWS Console is not an option.
@@ -80,6 +81,7 @@ For this workshop we'll create everything under CdkWorkshopStack constructor in 
 
 # Let's Start
 ![](https://media.giphy.com/media/3ornjIhZGFWpbcGMAU/giphy.gif)  
+<sup>https://media.giphy.com/media/3ornjIhZGFWpbcGMAU/giphy.gif</sup>  
 Before we start though please run 
 ```
 cdk bootstrap

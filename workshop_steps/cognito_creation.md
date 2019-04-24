@@ -71,7 +71,8 @@ Okay let's break it down
 Cognito Identity Pool have the ability to allow unauthenticated guest (limited) access. We don't need this so we are setting `allowUnauthenticatedIdentities` to false.
 Cognito Identity Pool only grant Federated access, it do not validate a user's identity. This task is delegated to an Identity Provider. In our case Cognito User Pool is our identity provider.
 
-![](https://media.giphy.com/media/l49JU1snMAYOc0dKE/giphy.gif)
+![](https://media.giphy.com/media/l49JU1snMAYOc0dKE/giphy.gif)  
+<sup>https://media.giphy.com/media/l49JU1snMAYOc0dKE/giphy.gif</sup>
 
 **ALMOST!!**
 
@@ -115,6 +116,7 @@ In second section of code we are simply creating a policy which grants `Invoke` 
 In order to see what this did open IAM in AWS console and fine the role starting with `CdkWorkshopStack-RandomQuoteIdentityPoolAuthRole`. For first section of code check `Trust relationships` tab. For second section of code check `Permissions` tab.
 
 ![](https://media.giphy.com/media/fL1j6YgKVaYmY/giphy.gif)  
+<sup>https://media.giphy.com/media/fL1j6YgKVaYmY/giphy.gif</sup>
 
 Okay we got Pool, Identity, Role and Permissions. Only thing missing is provide IdentityPool with the Role so that it can provide credentials to assume that role.
 
@@ -132,7 +134,8 @@ Easy enough, only thing to notice is that we are attaching a role for `authentic
 
 ## Congratulations 🍾
 
-![](https://media.giphy.com/media/8JW82ndaYfmNoYAekM/giphy.gif)
+![](https://media.giphy.com/media/8JW82ndaYfmNoYAekM/giphy.gif)  
+<sup>https://media.giphy.com/media/8JW82ndaYfmNoYAekM/giphy.gif</sup>
 
 
 Wait WHAT??? How about testing? How do I know this thing even works???

@@ -48,7 +48,8 @@ CdkWorkshopStack: creating CloudFormation changeset...
 Stack ARN:
 arn:aws:cloudformation:us-west-2:222222222222:stack/CdkWorkshopStack/7dad4dd0-62f5-11e9-9318-066b98e74c72
 ```
-![](https://media.giphy.com/media/yoJC2GnSClbPOkV0eA/giphy.gif)
+![](https://media.giphy.com/media/yoJC2GnSClbPOkV0eA/giphy.gif)  
+<sup>https://media.giphy.com/media/yoJC2GnSClbPOkV0eA/giphy.gif</sup>
 
 ## [<<PREVIOUS](../README.md)
 ## [NEXT>>](lambda_function_creation.md)
